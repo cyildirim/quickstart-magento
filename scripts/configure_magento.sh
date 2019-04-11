@@ -60,10 +60,19 @@ cd /var/www/html/bin
 --admin-user=$adminuser --admin-password=$adminpassword --language=$magentolanguage \
 --currency=$magentocurrency --timezone=$magentotimezone $secure
 
-init_value=`head -n10 /var/www/html/app/etc/env.php`
+#init_value=`head -n10 /var/www/html/app/etc/env.php`
 
 cat << EOF > /var/www/html/app/etc/env.php
-$init_value
+<?php
+return array (
+  'backend' =>
+  array (
+      'frontName' => 'admin',
+  ),
+  'crypt' =>
+      array (
+          'key' => '9af38453afda96c7862c7d10eb493ba4',
+  ),
   'session' =>
   array (
     'save' => 'redis',
