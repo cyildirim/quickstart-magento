@@ -64,7 +64,7 @@ EC2_AVAIL_ZONE=`curl -s http://169.254.169.254/latest/meta-data/placement/availa
 EC2_REGION="`echo \"$EC2_AVAIL_ZONE\" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'`"
 
 yum -y update
-yum -y install nginx php72-fpm php72-cli php72-mysqlnd php72-soap php72-xml php72-zip php72-json php72-mcrypt php72-intl php72-mbstring php72-zip php72-gd mysql56
+yum -y install nginx php72-fpm php72-cli php72-mysqlnd php72-soap php72-xml php72-zip php72-json php72-mcrypt php72-intl php72-mbstring php72-zip php72-gd mysql57
 
 chkconfig nginx on
 chkconfig php-fpm-7.2 on
