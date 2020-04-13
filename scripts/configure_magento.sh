@@ -34,8 +34,8 @@ cd
 #fi
 [ -f "magento.tar.gz" ] && echo "Media file Found" || echo "Media file Not found"
 
-cd /var/www/html
-tar xzf ~/magento.tar.gz
+cd /var/www/html/bin
+tar xf ~/magento.tar.gz # sources from magento are not gzipped so we dont need xzf
 
 find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
 find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \;
@@ -53,8 +53,8 @@ else
   secure="--use-secure-admin=1 --use-secure=1 --base-url-secure=$protocol://$cname/"
 fi
 
-cd /var/www/html/bin
-./magento setup:install --base-url=$protocol://$cname/ \
+cd /var/www/html/
+bin/magento setup:install --base-url=$protocol://$cname/ \
 --db-host=$dbhost --db-name=$dbname --db-user=$dbuser --db-password=$dbpassword \
 --admin-firstname=$adminfirst --admin-lastname=$adminlast --admin-email=$adminemail \
 --admin-user=$adminuser --admin-password=$adminpassword --language=$magentolanguage \
@@ -179,7 +179,7 @@ EOF
 
 fi
 
-./magento deploy:mode:set production
+bin/magento deploy:mode:set production
 
-./magento info:adminuri > /home/ec2-user/adminuri
+bin/magento info:adminuri > /home/ec2-user/adminuri
 
